@@ -3,24 +3,13 @@
 // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
-// function Humanoid(attributes) {
-//   CharacterStats.call(this, attributes);
-//   this.team = attributes.team;
-//   this.weapons = attributes.weapons;
-//   this.language = attributes.language;
-// }
-
-// Humanoid.prototype = Object.create(CharacterStats.prototype);
-
-// Humanoid.prototype.greet = function() {
-//   return `${this.name} offers a greeting in ${this.language}`;
-// };
-
 CharacterStats.prototype.takeDamage = function() {
+  if (this.healthPoints < 1) {
+    return `${this.name} has already been destroyed`;
+  }
   this.healthPoints = this.healthPoints - 1;
-  // console.log(this.healthPoints);
   if (this.healthPoints > 0) {
-    return `${this.name} took damage. ${this.healthPoints} health points remaining.`;
+    return `${this.name} was hit and took damage. ${this.healthPoints} health points remaining.`;
   } else {
     return this.destroy();
   }
@@ -65,8 +54,6 @@ const villain1 = new Villain({
   weapons: ['Bow', 'Dagger'],
   language: 'Elvish',
 });
-
-// Humanoid.prototype.hit = function() {};
 
 console.log(villain1.takeDamage());
 console.log(villain1.takeDamage());
